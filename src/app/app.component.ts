@@ -74,6 +74,17 @@ export class AppComponent {
     this.markers.push(newMarker);
     this._markerService.addMarker(newMarker);
   }
+
+  removeMarker(marker){
+    console.log('removing marker');
+    for (var i = 0; i < this.markers.length; i++) {
+        if(marker.lat == this.markers[i].lat && marker.lng == this.markers[i].lng){
+          this.markers.splice(i, 1);
+        }
+    }
+
+    this._markerService.removeMarker(marker);
+  }
 }
 
 // Marker Type
