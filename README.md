@@ -1,4 +1,4 @@
-# Mapit
+# MapIt
 
 Angular2 practice with Google Maps and markers adding, dragging, updating and deleting.
 
