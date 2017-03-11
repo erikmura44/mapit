@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { MarkerService } from './services/marker.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [MarkerService]
 })
 export class AppComponent {
   // Zoom Level
@@ -18,29 +20,10 @@ export class AppComponent {
   markerDraggable:string;
 
   // Markers
-  markers: marker[] = [
-    {
-      name:'Company One',
-      lat: 42.825588,
-      lng: -71.018029,
-      draggable: true
-    },
-    {
-      name:'Company Two',
-      lat: 42.868164,
-      lng: -70.889071,
-      draggable: true
-    },
-    {
-      name:'Company Three',
-      lat: 42.858279,
-      lng: -70.930498,
-      draggable: false
-    }
-  ];
+  markers: marker[];
 
-  constructor(){
-
+  constructor(private _markerService:MarkerService){
+    this.markers = this._markerService.getMarkers();
   }
 
   clickedMarker(marker:marker, index:number){
@@ -87,6 +70,7 @@ export class AppComponent {
     }
 
     this.markers.push(newMarker);
+    this._markerService.addMarker(newMarker);
   }
 }
 
